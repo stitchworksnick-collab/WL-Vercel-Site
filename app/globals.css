@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   WESTFIELD THREADS — Design Tokens
+   ============================================ */
+:root {
+  --wl-teal: #123842;
+  --wl-teal-dark: #0d2a32;
+  --wl-teal-pressed: #091f26;
+  --wl-cream: #efe3c7;
+  --wl-cream-soft: rgba(239, 227, 199, 0.18);
+  --wl-bg: #F3F0EB;
+  --wl-surface: #FFFFFF;
+}
+
+/* ============================================
+   Base Layer
+   ============================================ */
+@layer base {
+  body {
+    @apply font-body text-text antialiased;
+    background: var(--wl-surface);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-black tracking-tight;
+  }
+}
+
+/* ============================================
+   Component Layer
+   ============================================ */
+@layer components {
+  /* Section wrapper */
+  .wl-section {
+    @apply max-w-page mx-auto px-6 py-14;
+  }
+
+  .wl-section-tight {
+    @apply max-w-page mx-auto px-6 py-10;
+  }
+
+  .wl-section-inner {
+    @apply max-w-inner mx-auto px-6 py-14;
+  }
+
+  /* Card base */
+  .wl-card {
+    @apply bg-white rounded-card border border-border shadow-card relative overflow-hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+
+  .wl-card:hover {
+    @apply shadow-card-hover;
+    transform: translateY(-3px);
+    border-color: rgba(18, 56, 66, 0.22);
+  }
+
+  /* Card with left accent bar */
+  .wl-card-accent::before {
+    content: "";
+    @apply absolute left-0 top-0 bottom-0 w-1;
+    background: var(--wl-teal);
+    opacity: 0.9;
+  }
+
+  /* Primary button */
+  .wl-btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full
+           font-body font-black text-[13px] uppercase tracking-widest
+           text-cream bg-teal shadow-button
+           transition-all duration-150 ease-out whitespace-nowrap;
+    border: 2px solid transparent;
+  }
+
+  .wl-btn-primary:hover {
+    @apply bg-teal-dark shadow-button-hover;
+    transform: translateY(-2px);
+  }
+
+  /* Secondary button */
+  .wl-btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full
+           font-body font-black text-[13px] uppercase tracking-widest
+           text-teal bg-white
+           transition-all duration-150 ease-out whitespace-nowrap;
+    border: 2px solid rgba(18, 56, 66, 0.20);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .wl-btn-secondary:hover {
+    transform: translateY(-2px);
+    border-color: rgba(18, 56, 66, 0.40);
+  }
+
+  /* Note/callout box */
+  .wl-note {
+    @apply rounded-2xl p-5 text-[15px] leading-relaxed;
+    background: var(--wl-cream-soft);
+    border: 1px solid rgba(239, 227, 199, 0.65);
+    border-left: 6px solid var(--wl-teal);
+    color: rgba(0, 0, 0, 0.72);
+  }
+}
+
+/* ============================================
+   Scroll Reveal Animation
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Brand Bar Animation
+   ============================================ */
+@keyframes brand-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
